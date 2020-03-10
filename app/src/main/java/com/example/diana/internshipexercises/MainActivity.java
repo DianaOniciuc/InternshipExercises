@@ -23,6 +23,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.d(TAG, "OnCreate: Happy to be born!");
+        if(savedInstanceState != null){
+            incrementValue=Integer.parseInt(savedInstanceState.getString("label_key"));
+        }
         initView();
     }
 
@@ -34,14 +37,7 @@ public class MainActivity extends AppCompatActivity {
         incrementBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(incrementTV.getText().toString().isEmpty()){
                     incrementValue++;
-                }
-                else{
-                    incrementValue=Integer.parseInt(incrementTV.getText().toString());
-                    incrementValue++;
-                }
-
                 incrementTV.setText(incrementValue+ "");
             }
         });
