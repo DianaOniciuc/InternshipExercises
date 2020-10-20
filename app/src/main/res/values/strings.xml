@@ -2,4 +2,10 @@
     <string name="app_name">InternshipExercises</string>
     <string name="number_of_clicks">Number of clicks</string>
     <string name="click_me">Click me!</string>
+    <string name="restaurant_title">Restaurant Title</string>
+    <string name="restaurant_subtitle">Restaurant Description</string>
+    <string name="restaurants">restaurants</string>
+    <string name="bottom">bottom</string>
+    <string name="floating">Floating...</string>
+    <string name="invisible">invisible</string>
 </resources>

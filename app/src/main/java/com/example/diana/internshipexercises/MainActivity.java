@@ -12,11 +12,11 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity {
 
     public static final String TAG =MainActivity.class.getSimpleName();
+    private static final String BUNDLE_COUNTER = "counter" ;
 
     private int incrementValue=0;
 
     private TextView incrementTV;
-    private Button incrementBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,21 +24,21 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Log.d(TAG, "OnCreate: Happy to be born!");
         if(savedInstanceState != null){
-            incrementValue=Integer.parseInt(savedInstanceState.getString("label_key"));
+            incrementValue=savedInstanceState.getInt(BUNDLE_COUNTER, 0);
         }
         initView();
     }
 
     private void initView(){
         incrementTV=findViewById(R.id.counter_value_tv);
-        incrementBtn=findViewById(R.id.increment_bt);
+        Button incrementBtn = findViewById(R.id.increment_bt);
 
-        incrementTV.setText(incrementValue+"");
+        incrementTV.setText(String.valueOf(incrementValue));
         incrementBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                     incrementValue++;
-                incrementTV.setText(incrementValue+ "");
+                incrementTV.setText(String.valueOf(incrementValue));
             }
         });
     }
@@ -52,38 +52,38 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d(TAG,"OnResume: Preparing");
+        Log.d(TAG,"OnResume: Final changes to the UI and I am ready to interact");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        Log.d(TAG,"OnPause: You can see me");
+        Log.d(TAG,"OnPause: You can see me, but I don't want to interact with you");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        Log.d(TAG,"OnStop: Packing up");
+        Log.d(TAG,"OnStop: Not visible anymore, I need a break");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Log.d(TAG,"OnDestroy");
+        Log.d(TAG,"OnDestroy: Bye Bye!");
     }
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putString("label_key", incrementTV.getText().toString());
+        outState.putInt(BUNDLE_COUNTER, incrementValue);
     }
 
-    @Override
+    /*@Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         incrementTV.setText(savedInstanceState.getString("label_key"));
-    }
+    }*/
 
     //override onBackPressed() for custom behavior
 }
